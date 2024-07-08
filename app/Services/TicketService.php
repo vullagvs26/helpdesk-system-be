@@ -29,33 +29,48 @@ class TicketService
             'description' => $ticket->description,
             'image' => $ticket->image, 
             'user' => [
-                'id' => $ticket->users->id,
-                'full_name' => $ticket->users->full_name,
-                'email' => $ticket->users->email,
-                'position' => $ticket->users->position,
+                
+                'full_name' => $ticket->users->full_name ?? null,
+                'email' => $ticket->users->email ?? null,
+                
             ],
             'system' => [
-                'id' => $ticket->systems->id,
-                'system_name' => $ticket->systems->system_name, 
-                'published_at' => $ticket->systems->published_at, 
-                'developed_by' => $ticket->systems->developed_by,
-                'description' => $ticket->systems->description,
+               
+                'system_name' => $ticket->systems->system_name ?? null, 
+               
             ],
             'developer' => [
-                'id' => $ticket->developes->id,
-                'first_name' => $ticket->developers->first_name,
-                'last_name' => $ticket->developers->last_name,
-                'email' => $ticket->developers->email,
-                'position' => $ticket->developers->position,
-                'description' => $ticket->developers->description,
+                
+                'email' => $ticket->developers->email ?? null,
+               
             ],
            
         ];
-        $dataStorage[] = $ticketData;
+     
     }
 
     return $dataStorage;
 }
+
+    public function storeTicket($data)
+    {
+        return $this->ticket_repository->storeTicket($data);
+    }
+
+    public function showTicket($id)
+    {
+        return $this->ticket_repository->showTicket($id);
+    }
+
+    public function updateTicket($id, $data)
+    {
+        return $this->ticket_repository->updateTicket($id, $data);
+    }
+
+    public function deleteTicket($id)
+    {
+        return $this->ticket_repository->deleteTicket($id);
+    }
 
 
 

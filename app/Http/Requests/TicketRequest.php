@@ -31,11 +31,11 @@ class TicketRequest extends FormRequest
         'impact' => 'required|string',
         'status' => 'required|string',
         'description' => 'required|string',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'full_name_id' => 'required|integer|exists:users,id',
-        'email_id' => 'required|email|exists:users,id',
-        'system_name_id' =>'required|integer|exists:systems,id',
-        'assigned_to_id' => 'required|integer||exists:developers,id',
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'full_name_id' => 'integer|exists:users,id',
+        'email_id' => 'email|exists:users,id',
+        'system_name_id' =>'integer|exists:systems,id',
+        'assigned_to_id' => 'integer||exists:developers,id',
         ];
     }
 
@@ -52,20 +52,20 @@ class TicketRequest extends FormRequest
             'status.string' => 'status must be a string.',
             'description.required' => 'description is required.',
             'description.string' => 'description must be a string.',
-            'image.required' => 'Image is required.',
+           
             'image.image' => 'Uploaded file must be an image (JPEG, PNG, JPG, GIF).',
             'image.mimes' => 'Image must be of type: jpeg, png, jpg, gif.',
             'image.max' => 'Image may not be greater than 2 MB in size.',
-            'full_name_id.required' => 'Full name ID is required.',
+           
             'full_name_id.integer' => 'Full name ID must be an integer.',
             'full_name_id.exists' => 'The selected full name is invalid.',
-            'email_id.required' => 'Email ID is required.',
+            
             'email_id.email' => 'Email ID must be a valid email address.',
             'email_id.exists' => 'The selected email is invalid.',
-            'system_name_id.required' => 'System name ID is required.',
+          
             'system_name_id.integer' => 'System name ID must be an integer.',
             'system_name_id.exists' => 'The selected system name is invalid.',
-            'assigned_to_id.required' => 'Assigned to ID is required.',
+           
             'assigned_to_id.integer' => 'Assigned to ID must be an integer.',
             'assigned_to_id.exists' => 'The selected assigned to is invalid.',
         ];
