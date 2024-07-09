@@ -31,6 +31,7 @@ class DeveloperRequest extends FormRequest
             'email' => 'required|email',
             'position' => 'required|string',
             'description' => 'required|string',
+            'status' => 'required|string',
         ];
     }
     public function messages(): array 
@@ -46,6 +47,8 @@ class DeveloperRequest extends FormRequest
             'position.string' => 'Position must be a string.',
             'description.required' => 'Description is required.',
             'description.string' => 'Description must be a string.',
+            'status.required' => 'status is required.',
+            'status.string' => 'status must be a string.',
         ];
     }
 

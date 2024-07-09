@@ -27,7 +27,8 @@ class DeveloperService
                 'last_name' => $developer->last_name, 
                 'email' => $developer->email,  
                 'position' => $developer->position,  
-                'description' => $developer->description,                         
+                'description' => $developer->description,   
+                'status' => $developer->status,                       
             ];
          
         }

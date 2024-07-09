@@ -40,6 +40,7 @@ class DeveloperController extends Controller
                 'email' => $developer_request['email'],
                 'position' => $developer_request['position'],
                 'description' => $developer_request['description'],
+                'status' => $developer_request['status'],
          
             ];
             $this->developer_service->storeDeveloper($data); 
@@ -71,7 +72,8 @@ class DeveloperController extends Controller
                 'last_name' => $developer_request['last_name'],
                 'email' => $developer_request['email'],
                 'position' => $developer_request['position'],
-                'description' => $developer_request['description'],               
+                'description' => $developer_request['description'],
+                'status' => $developer_request['status'],               
             ]; 
             $this->developer_service->updateDeveloper($id,$data);
         } catch (\Exception $e) {
