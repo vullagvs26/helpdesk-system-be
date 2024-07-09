@@ -28,21 +28,11 @@ class TicketService
             'status' => $ticket->status,
             'description' => $ticket->description,
             'image' => $ticket->image, 
-            'user' => [
-                
-                'full_name' => $ticket->users->full_name ?? null,
-                'email' => $ticket->users->email ?? null,
-                
-            ],
-            'system' => [
-               
-                'system_name' => $ticket->systems->system_name ?? null, 
-               
+            'system' => [               
+                'system_name' => $ticket->systems->system_name ?? null,   
             ],
             'developer' => [
-                
                 'email' => $ticket->developers->email ?? null,
-               
             ],
            
         ];

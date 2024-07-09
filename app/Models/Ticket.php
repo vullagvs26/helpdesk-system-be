@@ -22,11 +22,6 @@ class Ticket extends Model
     
     protected $guarded = ['id']; 
     
-    public function users()
-    {
-        return $this->hasOne(User::class, 'id', 'full_name_id');
-        return $this->hasOne(User::class, 'id', 'email_id');
-    }
 
     public function systems()
     {

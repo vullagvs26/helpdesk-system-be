@@ -76,8 +76,7 @@ class TicketController extends Controller
                 'status' => $ticket_request['status'], 
                 'description' => $ticket_request['description'], 
                 'image' => $ticket_request['image'],
-                
-                
+                 
             ]; 
             $this->ticket_service->updateTicket($id,$data);
         } catch (\Exception $e) {

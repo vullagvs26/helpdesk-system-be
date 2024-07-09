@@ -32,8 +32,7 @@ class TicketRequest extends FormRequest
         'status' => 'required|string',
         'description' => 'required|string',
         'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        'full_name_id' => 'integer|exists:users,id',
-        'email_id' => 'email|exists:users,id',
+        
         'system_name_id' =>'integer|exists:systems,id',
         'assigned_to_id' => 'integer||exists:developers,id',
         ];
@@ -57,11 +56,6 @@ class TicketRequest extends FormRequest
             'image.mimes' => 'Image must be of type: jpeg, png, jpg, gif.',
             'image.max' => 'Image may not be greater than 2 MB in size.',
            
-            'full_name_id.integer' => 'Full name ID must be an integer.',
-            'full_name_id.exists' => 'The selected full name is invalid.',
-            
-            'email_id.email' => 'Email ID must be a valid email address.',
-            'email_id.exists' => 'The selected email is invalid.',
           
             'system_name_id.integer' => 'System name ID must be an integer.',
             'system_name_id.exists' => 'The selected system name is invalid.',
