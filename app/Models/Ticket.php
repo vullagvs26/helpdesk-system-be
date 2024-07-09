@@ -18,8 +18,8 @@ class Ticket extends Model
         'status',
         'description',
         'image',
-     
-
+        'system_name_id',
+        'assigned_to_id'
     ];
     
     protected $guarded = ['id']; 
