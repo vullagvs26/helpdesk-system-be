@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TicketController ;
 use App\Http\Controllers\UserController ;
 use App\Http\Controllers\SystemController ;
+use App\Http\Controllers\DeveloperController ;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::middleware('auth:sanctum')->get('/ticket', function (Request $request) {
 Route::apiResource('/tickets', TicketController::class);
 Route::apiResource('/users', UserController::class);
 Route::apiResource('/systems', SystemController::class);
+Route::apiResource('/developers', DeveloperController::class);
