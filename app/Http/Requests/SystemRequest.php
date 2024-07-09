@@ -7,7 +7,7 @@ use App\Traits\ResponseTrait;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserRequest extends FormRequest
+class SystemRequest extends FormRequest
 {
     use ResponseTrait;
     /**
@@ -26,23 +26,25 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => 'required|string',
-            'email' => 'required|string',
-            'position' => 'required|string',
-
+            'system_name' => 'required|string',
+            'published_at' => 'required|date_format:Y-m-d',
+            'developed_by' => 'required|string',
+            'description' => 'required|string',
         ];
     }
 
+    
     public function messages(): array 
     {
         return [
-            
-            'full_name.required' => 'Full Name is required.',
-            'full_name.string' => 'Full Name must be a string.',
-            'email.required' => 'email is required.',
-            'email.string' => 'email must be a string.',
-            'position.required' => 'Position is required.',
-            'position.string' => 'Position must be a string.',
+            'system_name.required' => 'System Name is required.',
+            'system_name.string' => 'System Name must be a string.',
+            'published_at.required' => 'Published Date is required.',
+            'published_at.date_format' => 'Published Date must be a valid date in the format YYYY-MM-DD.',
+            'developed_by.required' => 'Developed By is required.',
+            'developed_by.string' => 'Developed By must be a string.',
+            'description.required' => 'Description is required.',
+            'description.string' => 'Description must be a string.',
         ];
     }
 
