@@ -14,33 +14,36 @@ class TicketService
     }
 
     public function loadTickets()
-{
-    $tickets = $this->ticket_repository->loadTickets();
+    {
+        $tickets = $this->ticket_repository->loadTickets();
 
-    $dataStorage = [];
+        $dataStorage = [];
 
-    foreach ($tickets as $ticket) {
-        $dataStorage[] = [
-            'id' => $ticket->id,
-            'ticket_no' => $ticket->ticket_no,
-            'type_of_ticket' => $ticket->type_of_ticket,
-            'impact' => $ticket->impact,
-            'status' => $ticket->status,
-            'description' => $ticket->description,
-            'image' => $ticket->image, 
-            'system' => [               
-                'system_name' => $ticket->systems->system_name ?? null,   
-            ],
-            'developer' => [
-                'email' => $ticket->developers->email ?? null,
-            ],
+        foreach ($tickets as $ticket) {
            
-        ];
-     
-    }
 
-    return $dataStorage;
-}
+                $dataStorage[] = [
+                    'id' => $ticket->id,
+                    'full_name' => $ticket->full_name, // Ensure 'full_name' exists in your Ticket model
+                    'email' => $ticket->email,
+                    'ticket_no' => $ticket->ticket_no,
+                    'type_of_ticket' => $ticket->type_of_ticket,
+                    'impact' => $ticket->impact,
+                    'status' => $ticket->status,
+                    'description' => $ticket->description,
+                    'image' => $ticket->image,
+                    'system' => [
+                        'system_name' => optional($ticket->systems)->system_name,
+                    ],
+                    'developer' => [
+                        'assigned_to' => optional($ticket->developers)->email,
+                    ],
+                ];
+            
+        }
+
+        return $dataStorage;
+    }
 
     public function storeTicket($data)
     {
@@ -61,7 +64,4 @@ class TicketService
     {
         return $this->ticket_repository->deleteTicket($id);
     }
-
-
-
 }

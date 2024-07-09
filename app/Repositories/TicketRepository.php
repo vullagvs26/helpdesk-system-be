@@ -12,7 +12,7 @@ class TicketRepository {
     }
     
     public function loadTickets(){
-        return $this->ticket_model->with('users', 'systems', 'developers')->get();
+        return $this->ticket_model->with('systems', 'developers')->get();
     } 
     
     public function storeTicket($data) {

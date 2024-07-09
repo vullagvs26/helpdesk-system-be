@@ -35,13 +35,16 @@ class TicketController extends Controller
         $result = $this->successResponse('Store Success') ; 
         try {
             $data = [
-                
+                'full_name' => $ticket_request['full_name'],
+                'email' => $ticket_request['email'],
                 'ticket_no' => $ticket_request['ticket_no'],
                 'type_of_ticket' => $ticket_request['type_of_ticket'],
                 'impact' => $ticket_request['impact'],
                 'status' => $ticket_request['status'], 
                 'description' => $ticket_request['description'], 
                 'image' => $ticket_request['image'],
+                'system_name_id' => $ticket_request['system_name_id'],
+                'assigned_to_id' => $ticket_request['assigned_to_id'],
             ];
             $this->ticket_service->storeTicket($data); 
         } catch (\Exception $e) {
@@ -69,14 +72,16 @@ class TicketController extends Controller
         $result = $this->successResponse("Update Success");
         try {
             $data = [
-                
+                'full_name' => $ticket_request['full_name'],
+                'email' => $ticket_request['email'],
                 'ticket_no' => $ticket_request['ticket_no'],
                 'type_of_ticket' => $ticket_request['type_of_ticket'],
                 'impact' => $ticket_request['impact'],
                 'status' => $ticket_request['status'], 
                 'description' => $ticket_request['description'], 
                 'image' => $ticket_request['image'],
-                 
+                'system_name_id' => $ticket_request['system_name_id'],
+                'assigned_to_id' => $ticket_request['assigned_to_id'],
             ]; 
             $this->ticket_service->updateTicket($id,$data);
         } catch (\Exception $e) {

@@ -26,6 +26,8 @@ class TicketRequest extends FormRequest
     public function rules(): array
     {
         return [
+        'full_name' => 'required|string',
+        'email' => 'required|email',
         'ticket_no' => 'required|integer',
         'type_of_ticket' => 'required|string',
         'impact' => 'required|string',
@@ -41,6 +43,10 @@ class TicketRequest extends FormRequest
     public function messages(): array 
     {
         return [
+            'full_name.required' => 'Full Name is required.',
+            'full_name.string' => 'Full Name must be a string.',
+            'email.required' => 'Email is required.',
+            'email.email' => 'Email must be a email address.',
             'ticket_no.required' => 'ticket number is required.',
             'ticket_no.integer' => 'ticket number must be a integer.',
             'type_of_ticket.required' => 'type of ticket is required.',
