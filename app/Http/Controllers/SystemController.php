@@ -40,6 +40,7 @@ class SystemController extends Controller
                 'published_at' => $system_request['published_at'],
                 'developed_by' => $system_request['developed_by'],
                 'description' => $system_request['description'],
+                'status' => $system_request['status'],  
          
             ];
             $this->system_service->storeSystem($data); 
@@ -71,7 +72,8 @@ class SystemController extends Controller
                 'system_name' => $system_request['system_name'],
                 'published_at' => $system_request['published_at'],
                 'developed_by' => $system_request['developed_by'],
-                'description' => $system_request['description'],                
+                'description' => $system_request['description'],
+                'status' => $system_request['status'],                
             ]; 
             $this->system_service->updateSystem($id,$data);
         } catch (\Exception $e) {

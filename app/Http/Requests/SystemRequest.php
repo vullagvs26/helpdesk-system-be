@@ -30,6 +30,7 @@ class SystemRequest extends FormRequest
             'published_at' => 'required|date_format:Y-m-d',
             'developed_by' => 'required|string',
             'description' => 'required|string',
+            'status' => 'required|string',
         ];
     }
 
@@ -45,6 +46,8 @@ class SystemRequest extends FormRequest
             'developed_by.string' => 'Developed By must be a string.',
             'description.required' => 'Description is required.',
             'description.string' => 'Description must be a string.',
+            'status.required' => 'status is required.',
+            'status.string' => 'status must be a string.',
         ];
     }
 

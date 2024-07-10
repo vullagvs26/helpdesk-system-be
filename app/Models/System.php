@@ -15,6 +15,7 @@ class System extends Model
         'published_at',
         'developed_by',
         'desciption',
+        'status',
     ];
     protected $guarded = ['id'] ; 
 

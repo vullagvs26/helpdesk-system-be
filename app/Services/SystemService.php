@@ -26,7 +26,8 @@ class SystemService
                 'system_name' => $system->system_name,
                 'published_at' => $system->published_at, 
                 'developed_by' => $system->developed_by,  
-                'description' => $system->description,                         
+                'description' => $system->description, 
+                'status' => $system->status,                        
             ];
          
         }
