@@ -26,7 +26,7 @@ class TicketService
                     'id' => $ticket->id,
                     'full_name' => $ticket->full_name, // Ensure 'full_name' exists in your Ticket model
                     'email' => $ticket->email,
-                    'ticket_no' => $ticket->ticket_no,
+                   // 'ticket_no' => $ticket->ticket_no,
                     'type_of_ticket' => $ticket->type_of_ticket,
                     'impact' => $ticket->impact,
                     'status' => $ticket->status,
