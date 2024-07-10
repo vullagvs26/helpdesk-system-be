@@ -20,26 +20,23 @@ class TicketService
         $dataStorage = [];
 
         foreach ($tickets as $ticket) {
-           
-
-                $dataStorage[] = [
-                    'id' => $ticket->id,
-                    'full_name' => $ticket->full_name, // Ensure 'full_name' exists in your Ticket model
-                    'email' => $ticket->email,
-                   // 'ticket_no' => $ticket->ticket_no,
-                    'type_of_ticket' => $ticket->type_of_ticket,
-                    'impact' => $ticket->impact,
-                    'status' => $ticket->status,
-                    'description' => $ticket->description,
-                    'image' => $ticket->image,
-                    'system' => [
-                        'system_name' => optional($ticket->systems)->system_name,
-                    ],
-                    'developer' => [
-                        'assigned_to' => optional($ticket->developers)->email,
-                    ],
-                ];
-            
+            $dataStorage[] = [
+                'id' => $ticket->id,
+                'full_name' => $ticket->full_name,
+                'email' => $ticket->email,
+                'ticket_no' => $ticket->ticket_no,
+                'type_of_ticket' => $ticket->type_of_ticket,
+                'impact' => $ticket->impact,
+                'status' => $ticket->status,
+                'description' => $ticket->description,
+                'image' => $ticket->image,
+                'system' => [
+                    'system_name' => optional($ticket->systems)->system_name,
+                ],
+                'developer' => [
+                    'assigned_to' => optional($ticket->developers)->email,
+                ],
+            ];
         }
 
         return $dataStorage;
@@ -63,5 +60,17 @@ class TicketService
     public function deleteTicket($id)
     {
         return $this->ticket_repository->deleteTicket($id);
+    }
+
+    public function generateTicketNo()
+    {
+        // Get the latest ticket number
+        $latestTicket = $this->ticket_repository->getLatestTicket();
+        
+        // Extract the numeric part from the latest ticket number
+        $latestTicketNo = $latestTicket ? (int) str_replace('TCKT-', '', $latestTicket->ticket_no) : 0;
+        $newTicketNo = 'TCKT-' . str_pad($latestTicketNo + 1, 5, '0', STR_PAD_LEFT);
+
+        return $newTicketNo;
     }
 }

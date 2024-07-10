@@ -36,6 +36,9 @@ class TicketController extends Controller
         try {
             // Retrieve the validated data from the request
             $validatedData = $ticket_request->validated();
+            
+            // Generate a new ticket number
+            $validatedData['ticket_no'] = $this->ticket_service->generateTicketNo();
 
             // Handle the image upload
             if ($ticket_request->hasFile('image')) {

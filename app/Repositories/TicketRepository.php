@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Ticket;
 
-class TicketRepository {
+class TicketRepository
+{
     public $ticket_model;
 
     public function __construct(Ticket $ticket_model) {
@@ -29,5 +30,10 @@ class TicketRepository {
     
     public function deleteTicket($id) {
         return $this->ticket_model->where("id", $id)->delete();
+    }
+
+    public function getLatestTicket()
+    {
+        return $this->ticket_model->orderBy('id', 'desc')->first();
     }
 }
