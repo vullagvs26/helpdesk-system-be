@@ -14,10 +14,10 @@ class System extends Model
         'system_name',
         'published_at',
         'developed_by',
-        'desciption',
+        'description',
         'status',
     ];
-    protected $guarded = ['id'] ; 
+    protected $dates = ['published_at', 'deleted_at']; 
 
     public function systems() {
         return $this->hasMany(System::class) ; 

@@ -86,12 +86,13 @@ class SystemController extends Controller
     public function destroy(string $id)
     {
         $result = $this->successResponse("Deleted");
-
+    
         try {
             $this->system_service->deleteSystem($id);
         } catch (\Exception $e) {
-            $result = $this->errorresponse();
+            $result = $this->errorResponse($e); 
         }
+        
         return $result;
     }
 
