@@ -73,7 +73,8 @@ class DeveloperController extends Controller
                 'email' => $developer_request['email'],
                 'position' => $developer_request['position'],
                 'description' => $developer_request['description'],
-                'status' => $developer_request['status'],               
+                'status' => $developer_request['status'],    
+                'profile_photo' => $developer_request->hasFile('profile_photo') ? $developer_request->file('profile_photo')->store('profile-photos', 'public') : null,           
             ]; 
             $this->developer_service->updateDeveloper($id,$data);
         } catch (\Exception $e) {

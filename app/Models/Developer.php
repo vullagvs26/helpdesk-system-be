@@ -17,6 +17,7 @@ class Developer extends Model
         'email',
         'position',
         'description',
+        'profile_photo',
     ]; 
     protected $guarded = ['id'] ; 
 

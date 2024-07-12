@@ -43,10 +43,23 @@ class DeveloperService
         return   $dataStorage;
     }
 
-    public function storeDeveloper($data)
-    {
-        return $this->developer_repository->storeDeveloper($data);
+// app/Services/DeveloperService.php
+
+public function storeDeveloper($data)
+{
+    // Handle profile photo upload
+    if (isset($data['profile_photo'])) {
+        $data['profile_photo'] = $this->uploadProfilePhoto($data['profile_photo']);
     }
+
+    return $this->developer_repository->storeDeveloper($data);
+}
+
+protected function uploadProfilePhoto($photo)
+{
+    $imagePath = $photo->store('profile-photos', 'public');
+    return $imagePath;
+}
 
     public function showDeveloper($id)
     {
