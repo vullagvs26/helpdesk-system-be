@@ -12,7 +12,7 @@ class DeveloperRepository {
     }
     
     public function loadDevelopers(){
-        return $this->developer_model->all();
+        return $this->developer_model->with('ticket_active','ticket_ongoing','ticket_closed')->get();
     } 
     
     public function storeDeveloper($data) {

@@ -20,11 +20,11 @@ class DeveloperController extends Controller
     public function index()
     {
         $result = $this->successResponse('Load Success'); 
-        try {
-            $result['data'] = $this->developer_service->loadDevelopers();
-        } catch (\Exception $e) {
-            $result = $this->errorResponse($e);
-        }    
+        // try {
+           $result['data'] = $this->developer_service->loadDevelopers();
+        // } catch (\Exception $e) {
+        //     $result = $this->errorResponse($e);
+        // }    
 
         return $result; 
     }

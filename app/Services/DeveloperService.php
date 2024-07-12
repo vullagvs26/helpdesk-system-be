@@ -22,18 +22,25 @@ class DeveloperService
     
         foreach ($developers as $developer) {
             $dataStorage[] = [
-                'id' => $developer->id,
+                'id' => $developer['id'],
                 'first_name' => $developer->first_name,
                 'last_name' => $developer->last_name, 
                 'email' => $developer->email,  
                 'position' => $developer->position,  
                 'description' => $developer->description,   
-                'status' => $developer->status,                       
+                'status' => $developer->status, 
+                'activeTickets' => count($developer->ticket_active) ,
+                'ongoingTickets' => count($developer->ticket_ongoing), 
+                'closedTickets' => count($developer->ticket_closed) 
+                // 'tickets' => [
+                //     'id' => optional($developer->tickets)->id,
+                //     'status' => optional($developer->tickets)->status,
+                                    
             ];
          
         }
     
-        return $dataStorage;
+        return   $dataStorage;
     }
 
     public function storeDeveloper($data)

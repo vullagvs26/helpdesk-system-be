@@ -20,7 +20,13 @@ class Developer extends Model
     ]; 
     protected $guarded = ['id'] ; 
 
-    public function developers() {
-        return $this->hasMany(Developer::class) ; 
+    public function ticket_active() {
+        return $this->hasMany(Ticket::class ,   'assigned_to_id', 'id') ->where('status','Active') ; 
+    }
+    public function ticket_ongoing() {
+        return $this->hasMany(Ticket::class ,   'assigned_to_id', 'id') ->where('status','On-going') ; 
+    }
+    public function ticket_closed() {
+        return $this->hasMany(Ticket::class ,   'assigned_to_id', 'id') ->where('status','Closed') ; 
     }
 }
