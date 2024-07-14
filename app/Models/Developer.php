@@ -21,6 +21,7 @@ class Developer extends Model
     ]; 
     protected $guarded = ['id'] ; 
 
+  
     public function ticket_active() {
         return $this->hasMany(Ticket::class ,   'assigned_to_id', 'id') ->where('status','Active') ; 
     }
@@ -30,4 +31,6 @@ class Developer extends Model
     public function ticket_closed() {
         return $this->hasMany(Ticket::class ,   'assigned_to_id', 'id') ->where('status','Closed') ; 
     }
+    
+    
 }

@@ -29,6 +29,7 @@ class DeveloperService
                 'position' => $developer->position,  
                 'description' => $developer->description,   
                 'status' => $developer->status, 
+                'profile_photo' => $developer->profile_photo ? url('storage/' . $developer->profile_photo) : null,
                 'activeTickets' => count($developer->ticket_active) ,
                 'ongoingTickets' => count($developer->ticket_ongoing), 
                 'closedTickets' => count($developer->ticket_closed) 
@@ -47,19 +48,17 @@ class DeveloperService
 
 public function storeDeveloper($data)
 {
-    // Handle profile photo upload
     if (isset($data['profile_photo'])) {
         $data['profile_photo'] = $this->uploadProfilePhoto($data['profile_photo']);
     }
-
     return $this->developer_repository->storeDeveloper($data);
 }
 
 protected function uploadProfilePhoto($photo)
 {
-    $imagePath = $photo->store('profile-photos', 'public');
-    return $imagePath;
+    return $photo->store('profile-photos', 'public');
 }
+
 
     public function showDeveloper($id)
     {

@@ -33,22 +33,18 @@ class DeveloperController extends Controller
     {
         $result = $this->successResponse('Store Success') ; 
         try {
-            $data = [
-                
-                'first_name' => $developer_request['first_name'],
-                'last_name' => $developer_request['last_name'],
-                'email' => $developer_request['email'],
-                'position' => $developer_request['position'],
-                'description' => $developer_request['description'],
-                'status' => $developer_request['status'],
-         
-            ];
+            $data = $developer_request->all();
+            if ($developer_request->hasFile('profile_photo')) {
+                $data['profile_photo'] = $developer_request->file('profile_photo');
+            }
             $this->developer_service->storeDeveloper($data); 
         } catch (\Exception $e) {
             $result = $this->errorResponse($e);
         }
         return $result;
     }
+    
+    
      //Display the specified resource.
      public function show(string $id)
      {
