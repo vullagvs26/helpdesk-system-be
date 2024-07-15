@@ -29,7 +29,7 @@ class TicketService
                 'impact' => $ticket->impact,
                 'status' => $ticket->status,
                 'description' => $ticket->description,
-                'image' => $ticket->image,
+                'image' => $ticket->image ? url('storage/' . $ticket->image) : null,
                 'system' => [
                     'system_name' => optional($ticket->systems)->system_name,
                 ],
