@@ -32,6 +32,7 @@ class DeveloperRequest extends FormRequest
             'position' => 'required|string',
             'description' => 'required|string',
             'status' => 'required|string',
+            'remarks' => 'string',
             'profile_photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
@@ -50,6 +51,7 @@ class DeveloperRequest extends FormRequest
             'description.string' => 'Description must be a string.',
             'status.required' => 'status is required.',
             'status.string' => 'status must be a string.',
+            'remarks.string' => 'remarks must be a string.',
             'profile_photo.image' => 'Uploaded file must be an image (JPEG, PNG, JPG, GIF).',
             'profile_photo.mimes' => 'Profile Photo must be of type: jpeg, png, jpg, gif.',
             'profile_photo.max' => 'Profile Photo may not be greater than 2 MB in size.',
