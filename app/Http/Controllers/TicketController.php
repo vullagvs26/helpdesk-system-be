@@ -55,6 +55,7 @@ class TicketController extends Controller
                 'impact' => $validatedData['impact'],
                 'status' => $validatedData['status'], 
                 'description' => $validatedData['description'], 
+                'remarks' => $validatedData['remarks'], 
                 'image' => $validatedData['image'] ?? null,  // Check for image existence
                 'system_name_id' => $validatedData['system_name_id'],
                 'assigned_to_id' => $validatedData['assigned_to_id'],
@@ -82,40 +83,39 @@ class TicketController extends Controller
     }
 
     // Update the specified resource in storage.
-    public function update(TicketRequest $ticket_request, string $id)
-    {
-        $result = $this->successResponse("Update Success");
-        try {
-            // Retrieve the validated data from the request
-            $validatedData = $ticket_request->validated();
+   // Update the specified resource in storage.
+public function update(TicketRequest $ticket_request, string $id)
+{
+    $result = $this->successResponse("Update Success");
+    try {
+        // Retrieve the validated data from the request
+        $validatedData = $ticket_request->validated();
 
-            // Handle the image upload
-            if ($ticket_request->hasFile('image')) {
-                $imagePath = $ticket_request->file('image')->store('images', 'public');
-                $validatedData['image'] = $imagePath;
+        // Prepare the data to be passed to the service
+        $data = [];
+        
+        // Add fields to update only if they exist in validatedData
+        $fillableFields = ['full_name', 'email', 'ticket_no', 'type_of_ticket', 'impact', 'status', 'description', 'remarks', 'image', 'system_name_id', 'assigned_to_id'];
+        foreach ($fillableFields as $field) {
+            if (array_key_exists($field, $validatedData)) {
+                $data[$field] = $validatedData[$field];
             }
-
-            // Prepare the data to be passed to the service
-            $data = [
-                'full_name' => $validatedData['full_name'],
-                'email' => $validatedData['email'],
-                'ticket_no' => $validatedData['ticket_no'],
-                'type_of_ticket' => $validatedData['type_of_ticket'],
-                'impact' => $validatedData['impact'],
-                'status' => $validatedData['status'], 
-                'description' => $validatedData['description'], 
-                'image' => $validatedData['image'] ?? null,  // Check for image existence
-                'system_name_id' => $validatedData['system_name_id'],
-                'assigned_to_id' => $validatedData['assigned_to_id'],
-            ];
-
-            // Call the updateTicket method in TicketService with the prepared data
-            $this->ticket_service->updateTicket($id, $data);
-        } catch (\Exception $e) {
-            $result = $this->errorResponse($e);
         }
-        return $result;
+
+        // Handle the image upload
+        if ($ticket_request->hasFile('image')) {
+            $imagePath = $ticket_request->file('image')->store('images', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        // Call the updateTicket method in TicketService with the prepared data
+        $this->ticket_service->updateTicket($id, $data);
+    } catch (\Exception $e) {
+        $result = $this->errorResponse($e);
     }
+    return $result;
+}
+
     
     // Remove the specified resource from storage.
     public function destroy(string $id)

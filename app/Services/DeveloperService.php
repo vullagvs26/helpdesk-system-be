@@ -29,7 +29,7 @@ class DeveloperService
                 'position' => $developer->position,  
                 'description' => $developer->description,   
                 'status' => $developer->status, 
-                'remarks' => $developer->remarks, 
+                
                 'profile_photo' => $developer->profile_photo ? url('storage/' . $developer->profile_photo) : null,
                 'activeTickets' => count($developer->ticket_active) ,
                 'ongoingTickets' => count($developer->ticket_ongoing), 

@@ -17,6 +17,7 @@ class Ticket extends Model
         'impact',
         'status',
         'description',
+        'remarks',
         'image',
         'system_name_id',
         'assigned_to_id'
