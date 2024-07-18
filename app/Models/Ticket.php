@@ -20,7 +20,10 @@ class Ticket extends Model
         'remarks',
         'image',
         'system_name_id',
-        'assigned_to_id'
+        'assigned_to_id',
+        'started_at',
+        'completed_at',
+        'completed_time',
     ];
     
     protected $guarded = ['id']; 

@@ -30,6 +30,9 @@ class TicketRequest extends FormRequest
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'system_name_id' => 'nullable|integer|exists:systems,id',
             'assigned_to_id' => 'nullable|integer|exists:developers,id',
+            'started_at' => 'nullable|date',
+            'completed_at' => 'nullable|date',
+            'completed_time' => 'nullable|date_format:H:i',
         ];
     }
 
@@ -57,6 +60,11 @@ class TicketRequest extends FormRequest
             'system_name_id.exists' => 'The selected system name is invalid.',
             'assigned_to_id.integer' => 'Assigned to ID must be an integer.',
             'assigned_to_id.exists' => 'The selected assigned to is invalid.',
+            'assigned_to_id.integer' => 'Assigned to ID must be an integer.',
+            'assigned_to_id.exists' => 'The selected assigned to is invalid.',
+            'started_at.date' => 'Started At must be a valid date.',
+            'completed_at.date' => 'Completed At must be a valid date.',
+            'completed_time.date_format' => 'Completed Time must be in the format HH:MM.',
         ];
     }
 

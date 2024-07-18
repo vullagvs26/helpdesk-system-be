@@ -56,6 +56,9 @@ class TicketController extends Controller
                 'status' => $validatedData['status'], 
                 'description' => $validatedData['description'], 
                 'remarks' => $validatedData['remarks'], 
+                'started_at' => $validatedData['started_at'], 
+                'completed_at' => $validatedData['completed_at'], 
+                'completed_time' => $validatedData['completed_time'], 
                 'image' => $validatedData['image'] ?? null,  // Check for image existence
                 'system_name_id' => $validatedData['system_name_id'],
                 'assigned_to_id' => $validatedData['assigned_to_id'],
@@ -95,7 +98,9 @@ public function update(TicketRequest $ticket_request, string $id)
         $data = [];
         
         // Add fields to update only if they exist in validatedData
-        $fillableFields = ['full_name', 'email', 'ticket_no', 'type_of_ticket', 'impact', 'status', 'description', 'remarks', 'image', 'system_name_id', 'assigned_to_id'];
+        $fillableFields = ['full_name', 'email', 'ticket_no', 'type_of_ticket', 'impact', 'status', 'description', 'remarks', 'image', 'system_name_id', 'assigned_to_id','started_at',
+        'completed_at',
+        'completed_time',];
         foreach ($fillableFields as $field) {
             if (array_key_exists($field, $validatedData)) {
                 $data[$field] = $validatedData[$field];

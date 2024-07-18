@@ -30,6 +30,9 @@ class TicketService
                 'status' => $ticket->status,
                 'description' => $ticket->description,
                 'remarks' => $ticket->remarks,
+                'started_at' => $ticket->started_at,
+                'completed_at' => $ticket->completed_at,
+                'completed_time' => $ticket->completed_time,
                 'image' => $ticket->image ? url('storage/' . $ticket->image) : null,
                 'system' => [
                     'system_name' => optional($ticket->systems)->system_name,
