@@ -15,6 +15,11 @@ class AuthController extends Controller
     {
         $this->authService = $authService;
     }
+    public function index()
+    {
+        $users = $this->authService->loadUsers();
+        return response()->json($users);
+    }
 
     public function register(UserRequest $request)
     {
@@ -27,7 +32,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('name', 'password');
 
         if (!$token = $this->authService->login($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);

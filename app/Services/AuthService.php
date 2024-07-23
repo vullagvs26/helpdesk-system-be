@@ -15,6 +15,11 @@ class AuthService
     {
         $this->userRepository = $userRepository;
     }
+    
+    public function loadUsers()
+    {
+        return $this->userRepository->loadUsers();
+    }
 
     public function register(array $data): User
     {
