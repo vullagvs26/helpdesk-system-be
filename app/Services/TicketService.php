@@ -30,6 +30,7 @@ class TicketService
                 'status' => $ticket->status,
                 'description' => $ticket->description,
                 'remarks' => $ticket->remarks,
+                'created_at' => $ticket->created_at,
                 'started_at' => $ticket->started_at,
                 'completed_at' => $ticket->completed_at,
                 'completed_time' => $ticket->completed_time,
