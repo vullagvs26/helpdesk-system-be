@@ -88,7 +88,7 @@ class DeveloperController extends Controller
         try {
             $this->developer_service->deleteDeveloper($id);
         } catch (\Exception $e) {
-            $result = $this->errorresponse();
+            $result = $this->errorresponse($e);
         }
         return $result;
     }

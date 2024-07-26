@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Developer extends Model
+
+class Developer extends Authenticatable implements JWTSubject
 {
     use HasFactory, SoftDeletes;
 
@@ -17,10 +20,20 @@ class Developer extends Model
         'email',
         'position',
         'description',
-       
+        'password',
         'profile_photo',
     ]; 
     protected $guarded = ['id'] ; 
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
   
     public function ticket_active() {
