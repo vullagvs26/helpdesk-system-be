@@ -39,7 +39,9 @@ class TicketService
                     'system_name' => optional($ticket->systems)->system_name,
                 ],
                 'developer' => [
+                    'id' => optional($ticket->developers)->id,
                     'assigned_to' => optional($ticket->developers)->email,
+                    'status' => optional($ticket->developers)->status,
                 ],
             ];
         }

@@ -69,12 +69,12 @@ protected function uploadProfilePhoto($photo)
     public function updateDeveloper($id, $data)
     {
         return $this->developer_repository->updateDeveloper($id, $data);
-    }
+    } 
 
     public function deleteDeveloper($id)
     {
         return $this->developer_repository->deleteDeveloper($id);
     }
-
+    
 
 }
