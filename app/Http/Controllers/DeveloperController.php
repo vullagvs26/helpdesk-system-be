@@ -7,6 +7,7 @@ use App\Services\DeveloperService;
 use App\Traits\ResponseTrait;
 use App\Http\Requests\DeveloperRequest;
 use App\Models\Developer;  // Make sure this is included
+use Illuminate\Support\Facades\Storage;
 
 class DeveloperController extends Controller
 {
@@ -62,20 +63,10 @@ class DeveloperController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Find the developer
         $developer = Developer::findOrFail($id);
-
-        // Handle file upload if present
-        if ($request->hasFile('profile_photo')) {
-            // Store the file and get the file path
-            $file = $request->file('profile_photo');
-            $filePath = $file->store('profile_photos', 'public'); // Store file in 'public/profile_photos'
-
-            // Add the file path to the update data
-            $updateData['profile_photo'] = $filePath;
+        if (!$developer) {
+            return response()->json(['message' => 'Developer not found'], 404);
         }
-
-        // Update only the fields that are present in the request
         $updateData = $request->only([
             'status',
             'first_name',
@@ -85,9 +76,10 @@ class DeveloperController extends Controller
             'description'
         ]);
 
-        // Merge the file path if a new file was uploaded
-        if (isset($filePath)) {
-            $updateData['profile_photo'] = $filePath;
+        if ($request->has('profile_photo')) {
+            $photo = $request->input('profile_photo');
+            $photoPath = $this->saveBase64Image($photo);
+            $updateData['profile_photo'] = $photoPath;
         }
 
         $developer->update($updateData);
@@ -97,6 +89,18 @@ class DeveloperController extends Controller
             'message' => 'Developer updated successfully.',
             'data' => $developer
         ]);
+    }
+
+    protected function saveBase64Image($base64Image)
+    {
+        $image = str_replace('data:image/png;base64,', '', $base64Image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = uniqid() . '.png';
+        $imagePath = 'profile-photos/' . $imageName;
+
+        Storage::disk('public')->put($imagePath, base64_decode($image));
+
+        return 'storage/' . $imagePath;
     }
 
 
