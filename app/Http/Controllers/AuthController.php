@@ -31,7 +31,13 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['token' => JWTAuth::fromUser($developer)]);
+        $token = JWTAuth::fromUser($developer);
+
+        return response()->json([
+            'token' => $token,
+            'id' => $developer->id,
+            'email' => $developer->email,
+        ]);
     }
 
     public function login(Request $request)
@@ -47,7 +53,13 @@ class AuthController extends Controller
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
-        return response()->json(['token' => $token]);
+        $developer = Developer::where('email', $request->email)->first();
+
+        return response()->json([
+            'token' => $token,
+            'id' => $developer->id,
+            'email' => $developer->email,
+        ]);
     }
 
     public function logout()
@@ -59,6 +71,11 @@ class AuthController extends Controller
 
     public function me()
     {
-        return response()->json(JWTAuth::parseToken()->authenticate());
+        $user = JWTAuth::parseToken()->authenticate();
+
+        return response()->json([
+            'id' => $user->id,
+            'email' => $user->email,
+        ]);
     }
 }
