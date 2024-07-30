@@ -32,7 +32,7 @@ class TicketRequest extends FormRequest
             'assigned_to_id' => 'nullable|integer|exists:developers,id',
             'started_at' => 'nullable|date',
             'completed_at' => 'nullable|date',
-            'completed_time' => 'nullable|date_format:H:i',
+            'completed_time' => 'nullable|date_format:H:i:s',
         ];
     }
 
@@ -64,7 +64,7 @@ class TicketRequest extends FormRequest
             'assigned_to_id.exists' => 'The selected assigned to is invalid.',
             'started_at.date' => 'Started At must be a valid date.',
             'completed_at.date' => 'Completed At must be a valid date.',
-            'completed_time.date_format' => 'Completed Time must be in the format HH:MM.',
+            'completed_time.date_format' => 'Completed Time must be in the format HH:MM:SS.', // Updated message
         ];
     }
 
