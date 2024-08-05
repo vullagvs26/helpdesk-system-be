@@ -36,3 +36,4 @@ Route::group(['middleware' => 'auth:api'], function() {
 });
 
 Route::get('/developers/{id}', [DeveloperController::class, 'show']);
+Route::get('/export', [SystemController::class, 'export']);

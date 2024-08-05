@@ -34,7 +34,6 @@ class Developer extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
   
     public function ticket_active() {
         return $this->hasMany(Ticket::class ,   'assigned_to_id', 'id') ->where('status','Active') ; 
