@@ -44,6 +44,7 @@ class Developer extends Authenticatable implements JWTSubject
     public function ticket_closed() {
         return $this->hasMany(Ticket::class ,   'assigned_to_id', 'id') ->where('status','Closed') ; 
     }
-    
-    
+    public function developers() {
+        return $this->hasMany(Developer::class) ; 
+    }
 }

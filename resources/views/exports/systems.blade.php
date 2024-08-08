@@ -85,11 +85,11 @@
                 <td>{{ $system->language }}</td>
                 <td>{{ $system->framework }}</td>
                 <td>{{ $system->database }}</td>
-                <td>{{ $system->section }}</td>
-                <td>{{ $system->developer }}</td>
-                <td>{{ $system->primary }}</td>
-                <td>{{ $system->secondary }}</td>
-                <td>{{ $system->tertiary }}</td>
+                <td>{{ $system->support_section }}</td>
+                <td>{{ $system->support_developer }}</td>
+                <td>{{ $system->support_primary }}</td>
+                <td>{{ $system->support_secondary }}</td>
+                <td>{{ $system->support_tertiary }}</td>
                 <td>{{ $system->original }}</td>
                 <td>{{ $system->portal }}</td>
                 <td>{{ $system->url_path }}</td>

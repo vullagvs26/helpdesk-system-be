@@ -72,6 +72,7 @@ class SystemController extends Controller
                 'ssi_status' => $system_request['ssi_status'],
                 'ssi_remarks' => $system_request['ssi_remarks'],
                 'ongoing_activity' => $system_request['ongoing_activity'],
+                'developer_id' => $system_request['developer_id'],
          
             ];
             $this->system_service->storeSystem($data); 
@@ -133,7 +134,8 @@ class SystemController extends Controller
                 'git_server' => $system_request['git_server'],
                 'ssi_status' => $system_request['ssi_status'],
                 'ssi_remarks' => $system_request['ssi_remarks'],
-                'ongoing_activity' => $system_request['ongoing_activity'],           
+                'ongoing_activity' => $system_request['ongoing_activity'], 
+                'developer_id' => $system_request['developer_id'],          
             ]; 
             $this->system_service->updateSystem($id,$data);
         } catch (\Exception $e) {

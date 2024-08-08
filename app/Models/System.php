@@ -45,10 +45,16 @@ class System extends Model
         'ssi_status',
         'ssi_remarks',
         'ongoing_activity',
+        'developer_id',
     ];
     protected $guarded = ['id'] ; 
 
     public function systems() {
         return $this->hasMany(System::class) ; 
+    }
+
+    public function developers()
+    {
+        return $this->hasOne(Developer::class, 'id', 'developer_id');
     }
 }

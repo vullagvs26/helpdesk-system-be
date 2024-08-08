@@ -60,6 +60,7 @@ class SystemRequest extends FormRequest
             'ssi_status' => 'nullable|string',
             'ssi_remarks' => 'nullable|string',
             'ongoing_activity' => 'nullable|string',
+            'developer_id' => 'nullable|exists:developers,id',
         ];
     }
 
@@ -102,6 +103,7 @@ class SystemRequest extends FormRequest
             'ssi_status.string' => 'SSI Status must be a string.',
             'ssi_remarks.string' => 'SSI Remarks must be a string.',
             'ongoing_activity.string' => 'Ongoing Activity must be a string.',
+            'developer_id.exists' => 'The selected developer is invalid.',
         ];
     }
 

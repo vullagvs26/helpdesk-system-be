@@ -12,7 +12,7 @@ class SystemRepository {
     }
     
     public function loadSystems(){
-        return $this->system_model->all();
+        return $this->system_model->with('developers')->get();
     } 
     
     public function storeSystem($data) {

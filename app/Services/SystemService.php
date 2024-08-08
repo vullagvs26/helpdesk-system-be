@@ -56,11 +56,13 @@ class SystemService
                 'git_server' => $system->git_server,
                 'ssi_status' => $system->ssi_status,
                 'ssi_remarks' => $system->ssi_remarks,
-                'ongoing_activity' => $system->ongoing_activity,                      
-            ];
-         
-        }
-    
+                'ongoing_activity' => $system->ongoing_activity, 
+                'developer' => [
+                    'id' => optional($system->developers)->id,
+                    'first_name' => optional($system->developers)->first_name,
+                ],                     
+            ];       
+        }  
         return $dataStorage;
     }
 
